@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Solar</string>
+    <string name="widget_small_label">Solar · Hoje</string>
+    <string name="widget_small_description">Geração do dia comparada à média, num anel. Redimensione para ver mais.</string>
+    <string name="widget_strip_label">Solar · Faixa</string>
+    <string name="widget_strip_description">Agora, hoje e economia numa linha.</string>
+    <string name="widget_large_label">Solar · Geração</string>
+    <string name="widget_large_description">Geração de hoje comparada à média diária, com a potência atual.</string>
+    <string name="widget_panel_label">Solar · Resumo</string>
+    <string name="widget_panel_description">Geração diária, semanal e mensal em um único widget, com comparação às médias de cada período.</string>
+    <string name="widget_curve_label">Solar · Curva do dia</string>
+    <string name="widget_curve_description">Potência agora e a curva de geração do dia.</string>
+</resources>

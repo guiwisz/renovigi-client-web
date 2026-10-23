@@ -1,0 +1,21 @@
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/app/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.keystore
+*.jks
+
+# Chave de assinatura e senhas (backup fora do repositório!)
+/keystore/
+# APKs gerados
+/dist/
+# Imagens de referência de design de terceiros (não redistribuir)
+/1.webp
+/2.webp
