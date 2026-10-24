@@ -1,0 +1,43 @@
+# Serve o app e encaminha /api/ para a nuvem ShineMonitor (o navegador não
+# pode chamá-la direto por causa do CORS). Nada é guardado no servidor.
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+
+    # DNS do contêiner, resolvido a cada requisição (tolera falhas passageiras de DNS).
+    resolver ${NGINX_LOCAL_RESOLVERS} valid=300s ipv6=off;
+    resolver_timeout 5s;
+
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+
+    location / {
+        try_files $uri $uri/ =404;
+        add_header Cache-Control "no-cache";
+        # Só código deste servidor roda na página (protege o token e o hash da
+        # senha guardados no navegador contra scripts injetados); nada de iframes.
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "no-referrer" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    }
+
+    location /api/ {
+        set $shine android.shinemonitor.com;
+        proxy_pass https://$shine/public/$is_args$args;
+        proxy_ssl_server_name on;
+        proxy_ssl_name android.shinemonitor.com;
+        proxy_set_header Host android.shinemonitor.com;
+        # Não repassa nada do navegador além da query assinada.
+        proxy_set_header Cookie "";
+        proxy_set_header Origin "";
+        proxy_set_header Referer "";
+        proxy_set_header User-Agent "okhttp/4.12.0";
+        proxy_hide_header Set-Cookie;
+        proxy_connect_timeout 10s;
+        proxy_read_timeout 30s;
+        add_header Cache-Control "no-store";
+    }
+}
