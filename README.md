@@ -3,6 +3,9 @@
 Acompanhe sua usina solar **Renovigi** pelo navegador, com a mesma conta do app
 **RenoClient**. Os dados vêm da nuvem **ShineMonitor** (Eybond).
 
+Versão web de Guilherme Wiszniewski, baseada no app Android
+[renovigi-client](https://github.com/humbertocortezia/renovigi-client) de Humberto Cortezia.
+
 > Projeto independente e não oficial, sem vínculo com Renovigi, Eybond ou ShineMonitor.
 > A API não é documentada para terceiros e pode mudar sem aviso.
 
@@ -71,4 +74,4 @@ Feito para rodar **na sua máquina ou na sua rede de casa**, via Docker. Não ex
 
 ## Licença
 
-[MIT](LICENSE)
+[MIT](LICENSE) © 2026 Humberto Cortezia (app original) e Guilherme Wiszniewski (versão web)
